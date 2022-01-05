@@ -1,5 +1,7 @@
 'use strict';
 
+// 该文件作用是将packages/theme-chalk/src/icon.scss文件内的图标名称提取出来，形成一个按css文件顺序倒序排列的icon名称数组，并生成文件examples/icon.json文件
+
 var postcss = require('postcss');
 var fs = require('fs');
 var path = require('path');
