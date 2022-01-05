@@ -1,11 +1,15 @@
 {
+  // 识别全局变量
+  // 有时候多个文件需要用到某个全局变量，但是某个全局变量中没有该属性，ESLint就会报错，此时需要向ESlint规则中添加需要辨认的变量。
   "globals": {
     "ga": true,
     "chrome": true
   },
+  // 可以省略包名的前缀 eslint-plugin-
   "plugins": ["html", "json"],
   "extends": "elemefe",
   "rules": {
+    // 禁止使用特定的全局变量
     "no-restricted-globals": ["error", "event", "fdescribe"]
   },
   "parserOptions": {
