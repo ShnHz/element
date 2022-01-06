@@ -1,5 +1,7 @@
 'use strict';
-
+// series 将任务函数和/或组合操作组合成更大的操作，这些操作将按顺序依次执行。
+// src 创建一个流，用于从文件系统读取 Vinyl 对象。
+// dest http://uprogrammer.cn/gulp-guide-cn/api/dest.html
 const { series, src, dest } = require('gulp');
 const sass = require('gulp-dart-sass');
 const autoprefixer = require('gulp-autoprefixer');
@@ -21,5 +23,7 @@ function copyfont() {
     .pipe(cssmin())
     .pipe(dest('./lib/fonts'));
 }
+
+console.log(src('./src/fonts/**').pipe(cssmin()));
 
 exports.build = series(compile, copyfont);

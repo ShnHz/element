@@ -1,5 +1,6 @@
 <template>
   <transition name="el-alert-fade">
+    <!-- role原来是WAI-ARIA（the Accessible Rich Internet Applications Suite），可帮助访问Web内容和Web应用有困难的用户进行访问的方法（比如用静态的(screen-reading technologies)浏览器浏览用Ajax技术制作的动态网页）， 用途是帮助残疾人，尤其是需要依靠屏幕阅读器和不能使用鼠标的用户。应用role属性可以设计出更加友好的网站应用。html5里面添加这个属性作为做辅助作用。 -->
     <div
       class="el-alert"
       :class="[typeClass, center ? 'is-center' : '', 'is-' + effect]"
@@ -54,6 +55,7 @@
       effect: {
         type: String,
         default: 'light',
+        // 验证其，是否是一个合法的值
         validator: function(value) {
           return ['light', 'dark'].indexOf(value) !== -1;
         }
@@ -82,10 +84,11 @@
         return TYPE_CLASSES_MAP[this.type] || 'el-icon-info';
       },
 
+      // 有辅助性文字或插槽有内容时标题加大
       isBigIcon() {
         return this.description || this.$slots.default ? 'is-big' : '';
       },
-
+      // 有辅助性文字或插槽有内容时标题加粗
       isBoldTitle() {
         return this.description || this.$slots.default ? 'is-bold' : '';
       }

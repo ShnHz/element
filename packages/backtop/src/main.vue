@@ -67,6 +67,7 @@ export default {
 
   methods: {
     init() {
+      // 获取触发滚动的对象	
       this.container = document;
       this.el = document.documentElement;
       if (this.target) {
@@ -89,10 +90,13 @@ export default {
       const el = this.el;
       const beginTime = Date.now();
       const beginValue = el.scrollTop;
+      // window.requestAnimationFrame 告诉浏览器——你希望执行一个动画，
+      // 并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
       const rAF = window.requestAnimationFrame || (func => setTimeout(func, 16));
       const frameFunc = () => {
         const progress = (Date.now() - beginTime) / 500;
         if (progress < 1) {
+          // 线性置顶算法
           el.scrollTop = beginValue * (1 - easeInOutCubic(progress));
           rAF(frameFunc);
         } else {
