@@ -1,6 +1,13 @@
-'use strict';
+/*
+ * @Author: sanghangning
+ * @Date: 2022-01-05 18:17:56
+ * @Last Modified by: sanghangning
+ * @Last Modified time: 2022-01-05 18:18:31
+ * 该文件作用是将packages/theme-chalk/src/icon.scss文件内的图标名称提取出来
+ * 形成一个按css文件顺序倒序排列的icon名称数组，并生成文件examples/icon.json文件
+ */
 
-// 该文件作用是将packages/theme-chalk/src/icon.scss文件内的图标名称提取出来，形成一个按css文件顺序倒序排列的icon名称数组，并生成文件examples/icon.json文件
+'use strict';
 
 var postcss = require('postcss');
 var fs = require('fs');

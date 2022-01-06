@@ -1,3 +1,10 @@
+/*
+ * @Author: sanghangning
+ * @Date: 2022-01-05 18:24:14
+ * @Last Modified by: sanghangning
+ * @Last Modified time: 2022-01-05 18:38:29
+ * 该文件作用是生成src/index.js文件
+ */
 var Components = require('../../components.json');
 var fs = require('fs');
 var render = require('json-templater/string');
@@ -61,8 +68,10 @@ export default {
 };
 `;
 
+// 删除对象中的font参数
 delete Components.font;
 
+// 生成组件名称列表
 var ComponentNames = Object.keys(Components);
 
 var includeComponentTemplate = [];
@@ -70,8 +79,10 @@ var installTemplate = [];
 var listTemplate = [];
 
 ComponentNames.forEach(name => {
+  // 将name转换为大驼峰 https://github.com/SamVerschueren/uppercamelcase
   var componentName = uppercamelcase(name);
 
+  // 根据模板生成JS语句 https://github.com/lightsofapollo/json-templater
   includeComponentTemplate.push(render(IMPORT_TEMPLATE, {
     name: componentName,
     package: name
@@ -87,6 +98,7 @@ ComponentNames.forEach(name => {
   if (componentName !== 'Loading') listTemplate.push(`  ${componentName}`);
 });
 
+// 根据模板生成index.js
 var template = render(MAIN_TEMPLATE, {
   include: includeComponentTemplate.join(endOfLine),
   install: installTemplate.join(',' + endOfLine),
