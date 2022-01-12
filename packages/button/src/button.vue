@@ -26,6 +26,8 @@
   export default {
     name: 'ElButton',
 
+    // inject注入 https://cn.vuejs.org/v2/api/#provide-inject
+    // 和provider组合使用
     inject: {
       elForm: {
         default: ''
@@ -65,6 +67,7 @@
         return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
       },
       buttonDisabled() {
+        //在data外面定义的属性和方法通过$options可以获取和调用
         return this.$options.propsData.hasOwnProperty('disabled') ? this.disabled : (this.elForm || {}).disabled;
       }
     },
